@@ -67,15 +67,14 @@ control <- trainControl(method = "cv",
                         number = 10,
                         sampling = "down",
                         verboseIter = FALSE,
-                        classProbs = TRUE,
-                        summaryFunction=twoClassSummary
+                        classProbs = TRUE, 
 )
 
 HeartRF <- train(TenYearCHD ~ age + sysBP + diaBP + totChol + BMI
                   + glucose + heartRate + cigsPerDay + prevalentHyp + male, 
                   data = train, 
                   method = 'rf',
-                  metric = "ROC",
+                  metric = "Kappa",
                   preProcess = c("scale", "center"), 
                   trControl = control
 )
@@ -85,7 +84,7 @@ HeartKNN <- train(TenYearCHD ~ age + sysBP + diaBP + totChol + BMI
                    + glucose + cigsPerDay + prevalentHyp + male, 
                    data = train, 
                    method = 'rf',
-                   metric = "ROC",
+                   metric = "Kappa",
                    preProcess = c("scale", "center"), 
                    trControl = control
 )
@@ -95,7 +94,7 @@ HeartDT <- train(TenYearCHD ~ age + sysBP + diaBP + totChol + BMI
                   + glucose + heartRate + cigsPerDay + prevalentHyp + male, 
                   data = train, 
                   method = 'rpart',
-                  metric = "ROC",
+                  metric = "Kappa",
                   preProcess = c("scale", "center"), 
                   trControl = control
 )
